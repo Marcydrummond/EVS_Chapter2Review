@@ -401,19 +401,13 @@
                 checkBtn.addEventListener('click', function() {
                     attempts++;
                     
-                    // Check the answer for this question
-                    checkSingleAnswer(index + 1);
-                    
-                    // Get the feedback element after it's been updated by checkSingleAnswer
-                    const feedback = document.getElementById(`feedback${index + 1}`);
+                    // Check the answer for this question - returns true if correct
+                    const isCorrect = checkSingleAnswer(index + 1);
                     
                     // If this is the second attempt or the answer is correct, show the next button
-                    if (attempts >= 2 || feedback.classList.contains('correct')) {
-                        // Use setTimeout to ensure this runs after the feedback is updated
-                        setTimeout(() => {
-                            nextBtn.style.display = 'inline-block';
-                            checkBtn.style.display = 'none';
-                        }, 50);
+                    if (attempts >= 2 || isCorrect) {
+                        nextBtn.style.display = 'inline-block';
+                        checkBtn.style.display = 'none';
                     }
                 });
                 
@@ -447,6 +441,9 @@
             
             function checkSingleAnswer(questionNum) {
                 const feedback = document.getElementById(`feedback${questionNum}`);
+                const checkBtn = document.getElementById(`checkBtn${questionNum}`);
+                const nextBtn = document.getElementById(`nextBtn${questionNum}`);
+                let isCorrect = false;
                 
                 switch(questionNum) {
                     case 1:
@@ -456,6 +453,7 @@
                             feedback.textContent = 'Correct! Your brain is the most important safety equipment - always think before you act.';
                             feedback.classList.add('correct');
                             feedback.classList.remove('incorrect');
+                            isCorrect = true;
                         } else {
                             feedback.textContent = 'Incorrect. Your brain is the most important safety equipment - always think before you act.';
                             feedback.classList.add('incorrect');
@@ -470,6 +468,7 @@
                             feedback.textContent = 'Correct! Class 0 high voltage gloves are rated for 1000V.';
                             feedback.classList.add('correct');
                             feedback.classList.remove('incorrect');
+                            isCorrect = true;
                         } else {
                             feedback.textContent = 'Incorrect. Class 0 high voltage gloves are rated for 1000V.';
                             feedback.classList.add('incorrect');
@@ -484,6 +483,7 @@
                             feedback.textContent = 'Correct! High voltage gloves must be recertified every 6 months.';
                             feedback.classList.add('correct');
                             feedback.classList.remove('incorrect');
+                            isCorrect = true;
                         } else {
                             feedback.textContent = 'Incorrect. High voltage gloves must be recertified every 6 months.';
                             feedback.classList.add('incorrect');
@@ -502,6 +502,7 @@
                             feedback.textContent = 'Correct! A small pinhole and oil contamination would make high voltage gloves unsuitable for use.';
                             feedback.classList.add('correct');
                             feedback.classList.remove('incorrect');
+                            isCorrect = true;
                         } else {
                             feedback.textContent = 'Incorrect. Only a small pinhole and oil contamination would make high voltage gloves unsuitable for use. A certification date from 5 months ago is still valid (within 6 months), minor fraying on leather outer gloves doesn\'t affect the rubber gloves\' integrity, and surface dirt can be cleaned.';
                             feedback.classList.add('incorrect');
@@ -516,6 +517,7 @@
                             feedback.textContent = 'Correct! According to NFPA70E, the proper barrier distance for fixed conductors up to 1000V is 3.5 feet.';
                             feedback.classList.add('correct');
                             feedback.classList.remove('incorrect');
+                            isCorrect = true;
                         } else {
                             feedback.textContent = 'Incorrect. According to NFPA70E, the proper barrier distance for fixed conductors up to 1000V is 3.5 feet.';
                             feedback.classList.add('incorrect');
@@ -525,6 +527,9 @@
                 }
                 
                 feedback.style.display = 'block';
+                
+                // Return whether the answer was correct
+                return isCorrect;
             }
             
             function calculateResults() {
