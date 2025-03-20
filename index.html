@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2 Review: Shocking Dangers and Protection</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #f39c12;
+            --danger-color: #e74c3c;
+            --success-color: #2ecc71;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-color: #ddd;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fff;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            resize: both;
+            min-height: 400px;
+            min-width: 320px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            background-color: var(--light-bg);
+        }
+        
+        .question {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .options {
+            margin-left: 20px;
+        }
+        
+        .option {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .checkbox-group {
+            margin-left: 20px;
+        }
+        
+        .checkbox-option {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .checkbox-option input {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .drag-container {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        
+        .drag-item {
+            padding: 8px 12px;
+            margin: 5px;
+            background-color: #e8f4fc;
+            border: 1px solid #bde0fe;
+            border-radius: 4px;
+            cursor: move;
+            display: inline-block;
+        }
+        
+        .drop-container {
+            min-height: 200px;
+            border: 2px dashed var(--border-color);
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        
+        .drop-item {
+            padding: 8px 12px;
+            margin: 5px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .drop-zone {
+            min-height: 50px;
+            border: 1px dashed var(--border-color);
+            margin-bottom: 10px;
+            border-radius: 4px;
+            padding: 10px;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .correct {
+            background-color: rgba(46, 204, 113, 0.2);
+            border: 1px solid var(--success-color);
+        }
+        
+        .incorrect {
+            background-color: rgba(231, 76, 60, 0.2);
+            border: 1px solid var(--danger-color);
+        }
+        
+        .result-container {
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .result {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            height: 20px;
+            background-color: var(--success-color);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease-in-out;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .question {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Chapter 2 Review: Shocking Dangers and Protection</h1>
+            <div class="subtitle">Electric School Bus High Voltage Safety</div>
+        </header>
+        
+        <div class="content">
+            <div class="question-container">
+                <div class="question">1. What is the most important PPE when working with high voltage?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q1a" name="q1" value="A">
+                        <label for="q1a">A) High voltage gloves</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1b" name="q1" value="B">
+                        <label for="q1b">B) Face shield</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1c" name="q1" value="C">
+                        <label for="q1c">C) Your brain</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1d" name="q1" value="D">
+                        <label for="q1d">D) Insulated footwear</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback1"></div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">2. Class 0 high voltage gloves are rated for:</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q2a" name="q2" value="A">
+                        <label for="q2a">A) 500V</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2b" name="q2" value="B">
+                        <label for="q2b">B) 1000V</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2c" name="q2" value="C">
+                        <label for="q2c">C) 7500V</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2d" name="q2" value="D">
+                        <label for="q2d">D) 17,000V</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback2"></div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">3. How often must high voltage gloves be recertified?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q3a" name="q3" value="A">
+                        <label for="q3a">A) Monthly</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3b" name="q3" value="B">
+                        <label for="q3b">B) Every 3 months</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3c" name="q3" value="C">
+                        <label for="q3c">C) Every 6 months</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3d" name="q3" value="D">
+                        <label for="q3d">D) Annually</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback3"></div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">4. When inspecting high voltage gloves, which of the following would make them unsuitable for use? (Select all that apply)</div>
+                <div class="checkbox-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="q4a" name="q4" value="A">
+                        <label for="q4a">A) A small pinhole</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="q4b" name="q4" value="B">
+                        <label for="q4b">B) A certification date from 5 months ago</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="q4c" name="q4" value="C">
+                        <label for="q4c">C) Oil contamination</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="q4d" name="q4" value="D">
+                        <label for="q4d">D) Minor fraying on the leather outer gloves</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="q4e" name="q4" value="E">
+                        <label for="q4e">E) Surface dirt that can be cleaned with soap and water</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback4"></div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question">5. According to NFPA70E, what is the proper barrier distance for fixed conductors up to 1000V?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q5a" name="q5" value="A">
+                        <label for="q5a">A) 1 foot</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5b" name="q5" value="B">
+                        <label for="q5b">B) 3.5 feet</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5c" name="q5" value="C">
+                        <label for="q5c">C) 7 feet</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5d" name="q5" value="D">
+                        <label for="q5d">D) 10 feet</label>
+                    </div>
+                </div>
+                <div class="feedback" id="feedback5"></div>
+            </div>
+            
+                    <button id="submitBtn">Submit Answers</button>
+            
+            <div class="result-container" id="resultContainer">
+                <div class="result" id="scoreDisplay"></div>
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+                <button id="retryBtn">Try Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add check buttons to each question
+            const questionContainers = document.querySelectorAll('.question-container');
+            questionContainers.forEach((container, index) => {
+                const checkBtn = document.createElement('button');
+                checkBtn.textContent = 'Check Answer';
+                checkBtn.classList.add('check-btn');
+                checkBtn.style.marginTop = '10px';
+                checkBtn.id = `checkBtn${index + 1}`;
+                
+                // Add next button after check button
+                const nextBtn = document.createElement('button');
+                nextBtn.textContent = 'Next Question';
+                nextBtn.classList.add('next-btn');
+                nextBtn.style.marginTop = '10px';
+                nextBtn.style.marginLeft = '10px';
+                nextBtn.style.display = 'none';
+                nextBtn.id = `nextBtn${index + 1}`;
+                
+                container.appendChild(checkBtn);
+                container.appendChild(nextBtn);
+            });
+            
+            // Hide all questions except the first one
+            questionContainers.forEach((container, index) => {
+                if(index > 0) {
+                    container.style.display = 'none';
+                }
+            });
+            
+            // Add event listeners to check buttons
+            questionContainers.forEach((container, index) => {
+                const checkBtn = document.getElementById(`checkBtn${index + 1}`);
+                const nextBtn = document.getElementById(`nextBtn${index + 1}`);
+                let attempts = 0;
+                
+                checkBtn.addEventListener('click', function() {
+                    attempts++;
+                    
+                    // Check the answer for this question
+                    checkSingleAnswer(index + 1);
+                    
+                    // If this is the second attempt or the answer is correct, show the next button
+                    const feedback = document.getElementById(`feedback${index + 1}`);
+                    if (attempts >= 2 || feedback.classList.contains('correct')) {
+                        nextBtn.style.display = 'inline-block';
+                        checkBtn.style.display = 'none';
+                    }
+                });
+                
+                // Add event listeners to next buttons
+                nextBtn.addEventListener('click', function() {
+                    // Hide current question
+                    container.style.display = 'none';
+                    
+                    // Show next question if there is one
+                    if(index < questionContainers.length - 1) {
+                        questionContainers[index + 1].style.display = 'block';
+                    } else {
+                        // If this is the last question, show results
+                        calculateResults();
+                    }
+                });
+            });
+            
+            // Submit button functionality
+            const submitBtn = document.getElementById('submitBtn');
+            const retryBtn = document.getElementById('retryBtn');
+            const resultContainer = document.getElementById('resultContainer');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const progressBar = document.getElementById('progressBar');
+            
+            // Hide submit button initially
+            submitBtn.style.display = 'none';
+            
+            submitBtn.addEventListener('click', calculateResults);
+            retryBtn.addEventListener('click', resetQuiz);
+            
+            function checkSingleAnswer(questionNum) {
+                const feedback = document.getElementById(`feedback${questionNum}`);
+                
+                switch(questionNum) {
+                    case 1:
+                        const q1Answer = document.querySelector('input[name="q1"]:checked');
+                        
+                        if (q1Answer && q1Answer.value === 'C') {
+                            feedback.textContent = 'Correct! Your brain is the most important safety equipment - always think before you act.';
+                            feedback.classList.add('correct');
+                            feedback.classList.remove('incorrect');
+                        } else {
+                            feedback.textContent = 'Incorrect. Your brain is the most important safety equipment - always think before you act.';
+                            feedback.classList.add('incorrect');
+                            feedback.classList.remove('correct');
+                        }
+                        break;
+                        
+                    case 2:
+                        const q2Answer = document.querySelector('input[name="q2"]:checked');
+                        
+                        if (q2Answer && q2Answer.value === 'B') {
+                            feedback.textContent = 'Correct! Class 0 high voltage gloves are rated for 1000V.';
+                            feedback.classList.add('correct');
+                            feedback.classList.remove('incorrect');
+                        } else {
+                            feedback.textContent = 'Incorrect. Class 0 high voltage gloves are rated for 1000V.';
+                            feedback.classList.add('incorrect');
+                            feedback.classList.remove('correct');
+                        }
+                        break;
+                        
+                    case 3:
+                        const q3Answer = document.querySelector('input[name="q3"]:checked');
+                        
+                        if (q3Answer && q3Answer.value === 'C') {
+                            feedback.textContent = 'Correct! High voltage gloves must be recertified every 6 months.';
+                            feedback.classList.add('correct');
+                            feedback.classList.remove('incorrect');
+                        } else {
+                            feedback.textContent = 'Incorrect. High voltage gloves must be recertified every 6 months.';
+                            feedback.classList.add('incorrect');
+                            feedback.classList.remove('correct');
+                        }
+                        break;
+                        
+                    case 4:
+                        const q4aChecked = document.getElementById('q4a').checked;
+                        const q4bChecked = document.getElementById('q4b').checked;
+                        const q4cChecked = document.getElementById('q4c').checked;
+                        const q4dChecked = document.getElementById('q4d').checked;
+                        const q4eChecked = document.getElementById('q4e').checked;
+                        
+                        if (q4aChecked && !q4bChecked && q4cChecked && !q4dChecked && !q4eChecked) {
+                            feedback.textContent = 'Correct! A small pinhole and oil contamination would make high voltage gloves unsuitable for use.';
+                            feedback.classList.add('correct');
+                            feedback.classList.remove('incorrect');
+                        } else {
+                            feedback.textContent = 'Incorrect. Only a small pinhole and oil contamination would make high voltage gloves unsuitable for use. A certification date from 5 months ago is still valid (within 6 months), minor fraying on leather outer gloves doesn\'t affect the rubber gloves\' integrity, and surface dirt can be cleaned.';
+                            feedback.classList.add('incorrect');
+                            feedback.classList.remove('correct');
+                        }
+                        break;
+                        
+                    case 5:
+                        const q5Answer = document.querySelector('input[name="q5"]:checked');
+                        
+                        if (q5Answer && q5Answer.value === 'B') {
+                            feedback.textContent = 'Correct! According to NFPA70E, the proper barrier distance for fixed conductors up to 1000V is 3.5 feet.';
+                            feedback.classList.add('correct');
+                            feedback.classList.remove('incorrect');
+                        } else {
+                            feedback.textContent = 'Incorrect. According to NFPA70E, the proper barrier distance for fixed conductors up to 1000V is 3.5 feet.';
+                            feedback.classList.add('incorrect');
+                            feedback.classList.remove('correct');
+                        }
+                        break;
+                }
+                
+                feedback.style.display = 'block';
+            }
+            
+            function calculateResults() {
+                let score = 0;
+                const totalQuestions = 5; // Updated to 5 questions
+                
+                // Check each question
+                if(document.querySelector('input[name="q1"]:checked')?.value === 'C') score++;
+                if(document.querySelector('input[name="q2"]:checked')?.value === 'B') score++;
+                if(document.querySelector('input[name="q3"]:checked')?.value === 'C') score++;
+                
+                // Check question 4 (checkboxes)
+                const q4aChecked = document.getElementById('q4a').checked;
+                const q4bChecked = document.getElementById('q4b').checked;
+                const q4cChecked = document.getElementById('q4c').checked;
+                const q4dChecked = document.getElementById('q4d').checked;
+                const q4eChecked = document.getElementById('q4e').checked;
+                
+                if (q4aChecked && !q4bChecked && q4cChecked && !q4dChecked && !q4eChecked) {
+                    score++;
+                }
+                
+                // Check question 5
+                if(document.querySelector('input[name="q5"]:checked')?.value === 'B') score++;
+                
+                // Display results
+                const percentage = (score / totalQuestions) * 100;
+                scoreDisplay.textContent = `Your score: ${score}/${totalQuestions} (${percentage.toFixed(0)}%)`;
+                progressBar.style.width = `${percentage}%`;
+                
+                if (percentage < 70) {
+                    progressBar.style.backgroundColor = '#e74c3c';
+                } else {
+                    progressBar.style.backgroundColor = '#2ecc71';
+                }
+                
+                // Hide all questions
+                questionContainers.forEach(container => {
+                    container.style.display = 'none';
+                });
+                
+                // Show results
+                resultContainer.style.display = 'block';
+            }
+            
+            function resetQuiz() {
+                // Reset radio buttons
+                const radioInputs = document.querySelectorAll('input[type="radio"]');
+                radioInputs.forEach(input => {
+                    input.checked = false;
+                });
+                
+                // Reset checkboxes
+                const checkboxInputs = document.querySelectorAll('input[type="checkbox"]');
+                checkboxInputs.forEach(input => {
+                    input.checked = false;
+                });
+                
+                // Hide feedback
+                const feedbacks = document.querySelectorAll('.feedback');
+                feedbacks.forEach(feedback => {
+                    feedback.style.display = 'none';
+                    feedback.textContent = '';
+                    feedback.classList.remove('correct', 'incorrect');
+                });
+                
+                // Reset buttons
+                questionContainers.forEach((container, index) => {
+                    const checkBtn = document.getElementById(`checkBtn${index + 1}`);
+                    const nextBtn = document.getElementById(`nextBtn${index + 1}`);
+                    
+                    if (checkBtn) checkBtn.style.display = 'inline-block';
+                    if (nextBtn) nextBtn.style.display = 'none';
+                });
+                
+                // Show first question, hide others
+                questionContainers.forEach((container, index) => {
+                    if(index === 0) {
+                        container.style.display = 'block';
+                    } else {
+                        container.style.display = 'none';
+                    }
+                });
+                
+                // Hide results
+                resultContainer.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
