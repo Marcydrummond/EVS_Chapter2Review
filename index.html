@@ -404,11 +404,16 @@
                     // Check the answer for this question
                     checkSingleAnswer(index + 1);
                     
-                    // If this is the second attempt or the answer is correct, show the next button
+                    // Get the feedback element after it's been updated by checkSingleAnswer
                     const feedback = document.getElementById(`feedback${index + 1}`);
+                    
+                    // If this is the second attempt or the answer is correct, show the next button
                     if (attempts >= 2 || feedback.classList.contains('correct')) {
-                        nextBtn.style.display = 'inline-block';
-                        checkBtn.style.display = 'none';
+                        // Use setTimeout to ensure this runs after the feedback is updated
+                        setTimeout(() => {
+                            nextBtn.style.display = 'inline-block';
+                            checkBtn.style.display = 'none';
+                        }, 50);
                     }
                 });
                 
